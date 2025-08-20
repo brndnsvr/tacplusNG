@@ -64,10 +64,10 @@ if grep -q "^[[:space:]]*else if (!strcmp(tmp, \"TLS1_3\"))" "$LDAP_FILE"; then
     cp "$LDAP_FILE" "${LDAP_FILE}.tmp"
     
     # Comment out the TLS1_3 strcmp line
-    sed -i 's/^\([[:space:]]*\)else if (!strcmp(tmp, "TLS1_3"))/\1\/\/      else if (!strcmp(tmp, "TLS1_3"))/' "${LDAP_FILE}.tmp"
+    sed -i '' 's/^\([[:space:]]*\)else if (!strcmp(tmp, "TLS1_3"))/\1\/\/      else if (!strcmp(tmp, "TLS1_3"))/' "${LDAP_FILE}.tmp"
     
     # Comment out the ldap_tls_protocol_min line
-    sed -i 's/^\([[:space:]]*\)ldap_tls_protocol_min = LDAP_OPT_X_TLS_PROTOCOL_TLS1_3;/\1\/\/          ldap_tls_protocol_min = LDAP_OPT_X_TLS_PROTOCOL_TLS1_3;/' "${LDAP_FILE}.tmp"
+    sed -i '' 's/^\([[:space:]]*\)ldap_tls_protocol_min = LDAP_OPT_X_TLS_PROTOCOL_TLS1_3;/\1\/\/          ldap_tls_protocol_min = LDAP_OPT_X_TLS_PROTOCOL_TLS1_3;/' "${LDAP_FILE}.tmp"
     
     # Check if changes were made
     if ! diff -q "$LDAP_FILE" "${LDAP_FILE}.tmp" > /dev/null; then
